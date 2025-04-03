@@ -1,118 +1,59 @@
 import { useState, useRef } from 'react';
 
-//simple contact form with name, email and message field
-const ContactForm = () => {
-    /*form variables*/
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const msgRef = useRef();
-
-    /*error variables*/
-    const [nameError, setNameError] = useState('');
-    const [emailError, setEmailError] = useState('');
-    const [msgError, setMsgError] = useState('');
-
-    /*name & email change*/
-    const handleNameChange = (e) => {
-        setName(e.target.value);
-    }
-
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-    }
-
-    /*handle the submit*/
-    const submit = (e) => {
-        e.preventDefault();
-
-        setNameError('');
-        setEmailError('');
-        setMsgError('');
-
-        let isValid = true;
-
-        if (!name.trim()) {
-            setNameError('Please enter a name!');
-            isValid = false;
-        }
-
-        if (!email.trim()) {
-            setEmailError('Please enter an email!');
-            isValid = false;
-        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
-            setEmailError('Please enter a valid email!');
-            isValid = false;
-        }
-
-        const msg = msgRef.current.value;
-        if (msg.length < 2) {
-            setMsgError('Your message is too short.');
-            isValid = false;
-        }
-
-        if (isValid) {
-            alert('Successful submission!');
-
-            setName('');
-            setEmail('');
-            msgRef.current.value = '';
-        }
-        if (isValid) {
-            setSuccessMessage('Your message was sent!');
-
-            setName('');
-            setEmail('');
-            msgRef.current.value = '';
-        }
-    }
+export default function ContactForm() {
     return (
-        <div style={{
-            backgroundColor: "#BABABA",
-            maxWidth: "500px",
-            margin: "30px auto",
-            padding: "20px",
-            borderRadius: "8px"
-        }}>            <h2 style={{ margin: "8px", color: "#111111", textAlign: "center" }}>Contact Us</h2>
-            <form onSubmit={submit}>
-                <div>
-                    <label style={{ margin: "5px", color: "#111111" }}>Name:</label><br></br>
-                    <input type="text" id="name" value={name} onChange={handleNameChange} style={{ margin: "5px", backgroundColor: "white", color: "#111111" }} />
-                    {nameError && <p style={{ color: "#ac4128", margin: "5px" }}>{nameError}</p>}
-                </div>
-
-                <div>
-                    <label style={{ margin: "5px", color: "#111111" }}>Email:</label><br></br>
-                    <input type="email" id="email" value={email} onChange={handleEmailChange} style={{ margin: "5px", backgroundColor: "white", color: "black" }} />
-                    {emailError && <p style={{ color: "#ac4128", margin: "5px" }}>{emailError}</p>}
-                </div>
-
-                <div>
-                    <label style={{ margin: "5px", color: "#111111" }}>Message:</label><br></br>
-                    <textarea id="msg" ref={msgRef}
-                        style={{
-                            margin: "5px",
-                            backgroundColor: "white",
-                            color: "black",
-                            width: "100%",
-                            height: "100px"
-                        }}
-                    />                    {msgError && <p style={{ color: "#ac4128", margin: "5px" }}>{msgError}</p>}
-                </div>
-
-
-                <button id="formBtn" style={{
-                    backgroundColor: "#111111",
-                    color: "white",
-                    padding: "10px 20px",
-                    margin: "10px 5px",
-                    border: "none",
-                    borderRadius: "4px",
-                    cursor: "pointer"
-                }}
-                >Submit The Form</button>
-            </form>
+      <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg w-full max-w-lg">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white text-center mb-4">
+            Contact Us
+          </h2>
+          <p className="text-gray-600 dark:text-gray-300 text-center mb-6">
+            Have a question? Fill out the form and we'll get back to you!
+          </p>
+  
+          <form className="space-y-4">
+            <div>
+              <label className="block text-gray-700 dark:text-gray-300 font-medium">
+                Name
+              </label>
+              <input
+                type="text"
+                className="w-full p-3 border border-gray-300 rounded-lg dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Your Name"
+              />
+            </div>
+  
+            <div>
+              <label className="block text-gray-700 dark:text-gray-300 font-medium">
+                Email
+              </label>
+              <input
+                type="email"
+                className="w-full p-3 border border-gray-300 rounded-lg dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="you@example.com"
+              />
+            </div>
+  
+            <div>
+              <label className="block text-gray-700 dark:text-gray-300 font-medium">
+                Message
+              </label>
+              <textarea
+                className="w-full p-3 border border-gray-300 rounded-lg dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Write your message here..."
+                rows="4"
+              ></textarea>
+            </div>
+  
+            <button
+              type="submit"
+              className="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition-all"
+            >
+              Send Message
+            </button>
+          </form>
         </div>
+      </div>
     );
-};
-
-export default ContactForm;
+  }
+  
