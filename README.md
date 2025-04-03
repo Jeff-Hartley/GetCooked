@@ -9,9 +9,9 @@ Welcome to our interactive recipe book, **GetCooked** , currently under developm
 - Favorites page (save your favorite recipe from the list)
 - Contact form
 
-## Tech Features
+## Technologies Used
 
-- [Next.js](https://nextjs.org/)
+- Next.js
 - React
 - JavaScript
 - HTML
