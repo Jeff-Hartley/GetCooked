@@ -14,6 +14,7 @@ const Header = () => {
                     <li style={{ fontSize: "14px", listStyle: "none", textAlign: "center" }}><Link href="/recipebook">The Recipe Book</Link></li>
                     <li style={{ fontSize: "14px", listStyle: "none", textAlign: "center" }}><Link href="/contact">Contact Us</Link></li>
                     <li style={{ fontSize: "14px", listStyle: "none", textAlign: "center" }}><Link href="/favorites">Your Favorites</Link></li>
+                    <li style={{ fontSize: "14px", listStyle: "none", textAlign: "center" }}><Link href="/signup">Sign Up</Link></li>
                 </ul>
             </div>
         </header>
