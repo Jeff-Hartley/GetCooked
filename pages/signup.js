@@ -20,7 +20,6 @@ export default function SignupPage() {
     }
 
     try {
-      // **Important:** Replace this with your actual API endpoint for user registration
       const response = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: {
