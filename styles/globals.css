@@ -1,37 +1,124 @@
-/*Styling*/
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #d1d0d0;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #BFD7B5;
+  color: #333;
+  padding: 20px;
 }
 
+header {
+  text-align: center;
+  padding: 30px 0;
+  font-size: 2.5rem;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav a:hover {
+  background-color: #45a049;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+
 button {
-  padding: 8px 16px;
-  background: #fcffb0;
-  color: rgb(0, 0, 0);
+  background-color: #70A288;
+  color: white;
+  padding: 12px 25px;
   border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
   cursor: pointer;
-  border-radius: 4px;
-  font-size: 16px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 200px;
+}
+
+button:hover {
+  background-color: #618c76;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 40px;
+  max-width: 500px;
+  width: 100%;
+}
+
+input[type="text"], input[type="email"], textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333;
+  background-color: #E7E6F7;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+footer {
+  margin-top: 50px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  header {
+      font-size: 2rem;
+      padding: 20px;
+  }
+
+  .main-container {
+      margin-top: 20px;
+  }
+
+  .recipe-card {
+      width: 90%;
+  }
+
+  nav a {
+      padding: 8px 15px;
+      font-size: 1rem;
+  }
+
+  button {
+      width: 100%;
+  }
 }
