@@ -10,11 +10,14 @@ const Header = () => {
 
             <div>
                 <ul style={{ display: "grid", justifyContent: "center", color: "#111111", padding: "4px", textDecoration: "underline" }}>
-                    <li style={{ fontSize: "14px", listStyle: "none", textAlign: "center"}}><Link href="/">Home</Link></li>
+                    <li style={{ fontSize: "14px", listStyle: "none", textAlign: "center" }}><Link href="/">Home</Link></li>
                     <li style={{ fontSize: "14px", listStyle: "none", textAlign: "center" }}><Link href="/recipebook">The Recipe Book</Link></li>
                     <li style={{ fontSize: "14px", listStyle: "none", textAlign: "center" }}><Link href="/contact">Contact Us</Link></li>
                     <li style={{ fontSize: "14px", listStyle: "none", textAlign: "center" }}><Link href="/favorites">Your Favorites</Link></li>
                     <li style={{ fontSize: "14px", listStyle: "none", textAlign: "center" }}><Link href="/signup">Sign Up</Link></li>
+                    <li style={{ fontSize: "14px", listStyle: "none", textAlign: "center" }}><Link href="/about">About Us</Link>
+                    </li>
+
                 </ul>
             </div>
         </header>

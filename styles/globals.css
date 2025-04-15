@@ -5,8 +5,8 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #BFD7B5;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #bfd7b5;
   color: #333;
   padding: 20px;
 }
@@ -32,7 +32,7 @@ nav a {
   color: #fff;
   padding: 12px 25px;
   border-radius: 5px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   font-size: 1.2rem;
   transition: background-color 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -50,9 +50,8 @@ nav a:hover {
   gap: 30px;
 }
 
-
 button {
-  background-color: #70A288;
+  background-color: #70a288;
   color: white;
   padding: 12px 25px;
   border: none;
@@ -78,18 +77,22 @@ form {
   width: 100%;
 }
 
-input[type="text"], input[type="email"], textarea {
+input[type="text"],
+input[type="email"],
+textarea {
   width: 100%;
   padding: 12px;
   border: 2px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
   color: #333;
-  background-color: #E7E6F7;
+  background-color: #e7e6f7;
 }
 
-input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
-  border-color: #4CAF50;
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  border-color: #4caf50;
   outline: none;
 }
 
@@ -101,24 +104,24 @@ footer {
 
 @media (max-width: 768px) {
   header {
-      font-size: 2rem;
-      padding: 20px;
+    font-size: 2rem;
+    padding: 20px;
   }
 
   .main-container {
-      margin-top: 20px;
+    margin-top: 20px;
   }
 
   .recipe-card {
-      width: 90%;
+    width: 90%;
   }
 
   nav a {
-      padding: 8px 15px;
-      font-size: 1rem;
+    padding: 8px 15px;
+    font-size: 1rem;
   }
 
   button {
-      width: 100%;
+    width: 100%;
   }
 }
