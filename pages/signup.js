@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 
 export default function SignupPage() {
@@ -48,6 +50,7 @@ export default function SignupPage() {
 
   return (
     <div>
+      <Header />
       <h1>Sign Up</h1>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
@@ -85,6 +88,7 @@ export default function SignupPage() {
           {loading ? 'Signing Up...' : 'Sign Up'}
         </button>
       </form>
+      <Footer />
     </div>
   );
 }
