@@ -102,6 +102,30 @@ footer {
   font-size: 1rem;
 }
 
+.about-container {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.about-title {
+  font-size: 45px;
+  font-weight: bold;
+}
+
+.about-description {
+  max-width: 600px;
+  color: #181818;
+}
+
+.team-list {
+  list-style: none;
+}
+
+.team-member {
+  font-size: large;
+  margin-bottom: 10px;
+}
+
 @media (max-width: 768px) {
   header {
     font-size: 2rem;

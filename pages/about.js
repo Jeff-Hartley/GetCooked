@@ -1,20 +1,15 @@
-import Head from "next/head";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export default function AboutPage() {
     return (
         <>
-            <Head>
-                <title>GetCooked - About Us</title>
-            </Head>
-
             <Header />
 
             <main className="main-container about-container">
-                <h1 className="about-title">Meet the Team</h1>
+                <h1 className="about-title">The Team</h1>
                 <p className="about-description">
-                    We’re a group of five students who built GetCooked as a fun and helpful recipe app project.
+                    We’re a group of five students at Humber College who built GetCooked, as a fun and helpful recipe app project to showcase our skills.
                 </p>
 
                 <ul className="team-list">
