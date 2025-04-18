@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Header from "@/components/Header";
 import IntroParagraph from "@/components/IntroParagraph";
+import Reviews from "@/components/Reviews";
 import Footer from "@/components/Footer";
 
 
@@ -16,6 +17,8 @@ export default function Home() {
 
       <Header></Header>
       <IntroParagraph></IntroParagraph>
+
+      <Reviews></Reviews>
       <Footer></Footer>
     </>
   );
