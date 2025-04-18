@@ -1,30 +1,40 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const FavoritesContext = createContext();
 
-export function FavoritesProvider(props) {
-    const [favorites, setFavorites] = useState([]);
+export function FavoritesProvider({ children }) {
+  const [favorites, setFavorites] = useState([]);
 
-    function addToFavorites(recipe) {
-        const exists = favorites.some((item) => item.id === recipe.id);
-
-        if (!exists) {
-            setFavorites([...favorites, recipe]);
-        }
+  useEffect(() => {
+    const storedFavorites = localStorage.getItem("favorites");
+    if (storedFavorites) {
+      setFavorites(JSON.parse(storedFavorites));
     }
+  }, []);
 
-    function removeFromFavorites(recipeId) {
-        const updatedList = favorites.filter((item) => item.id !== recipeId);
-        setFavorites(updatedList);
+  useEffect(() => {
+    if (favorites.length > 0) {
+      localStorage.setItem("favorites", JSON.stringify(favorites));
     }
+  }, [favorites]);
 
-    return (
-        <FavoritesContext.Provider value={{ favorites, addToFavorites, removeFromFavorites }}>
-            {props.children}
-        </FavoritesContext.Provider>
-    );
+  const addToFavorites = (meal) => {
+    if (!favorites.some((fav) => fav.idMeal === meal.idMeal)) {
+      setFavorites((prevFavorites) => [...prevFavorites, meal]);
+    }
+  };
+
+  const removeFromFavorites = (mealId) => {
+    setFavorites((prevFavorites) => prevFavorites.filter((meal) => meal.idMeal !== mealId));
+  };
+
+  return (
+    <FavoritesContext.Provider value={{ favorites, addToFavorites, removeFromFavorites }}>
+      {children}
+    </FavoritesContext.Provider>
+  );
 }
 
 export function useFavorites() {
-    return useContext(FavoritesContext);
+  return useContext(FavoritesContext);
 }
