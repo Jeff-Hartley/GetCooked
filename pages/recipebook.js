@@ -1,8 +1,8 @@
+import { useState, useEffect } from "react";
+import { useFavorites } from "@/components/FavoritesContext";
 import Head from "next/head";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { useFavorites } from "@/components/FavoritesContext";
-import { useState, useEffect } from "react";
 
 export default function RecipeBook() {
   const [meals, setMeals] = useState([]);
@@ -10,93 +10,115 @@ export default function RecipeBook() {
   const { favorites, addToFavorites, removeFromFavorites } = useFavorites();
 
   useEffect(() => {
+    // Fetch meals from TheMealDB API
     const fetchMeals = async () => {
-      const response = await fetch(
-        `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchQuery}`
-      );
+      const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchQuery}`);
       const data = await response.json();
       setMeals(data.meals || []);
     };
+
     fetchMeals();
   }, [searchQuery]);
 
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
+  const handleFavoriteToggle = (meal) => {
+    const isFav = favorites.some((fav) => fav.idMeal === meal.idMeal);
+    if (isFav) {
+      removeFromFavorites(meal.idMeal);
+    } else {
+      addToFavorites(meal);
+    }
   };
 
   return (
     <>
       <Head>
-        <title>GetCooked - Recipe Book</title>
-        <meta name="description" content="Explore our collection of delicious recipes" />
+        <title>GetCooked - The Recipe Book</title>
+        <meta name="description" content="Browse and save your favorite recipes" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Header />
 
-      <main className="max-w-7xl mx-auto px-6 py-10 bg-amber-50 min-h-screen">
-        <h1 className="text-4xl font-serif font-bold text-center text-amber-800 mb-10">
-          🍽️ Recipe Book
-        </h1>
+      <div className="main-container">
+        <h2 style={{ fontSize: "28px", marginBottom: "20px" }}>Recipe Book</h2>
 
-        <div className="flex justify-center mb-8">
+        {/* Search Input */}
+        <div style={{ textAlign: "center", marginBottom: "20px" }}>
           <input
             type="text"
+            placeholder="Search recipes..."
             value={searchQuery}
-            onChange={handleSearchChange}
-            placeholder="Search for a meal..."
-            className="p-2 rounded-lg border border-amber-300 w-1/2"
+            onChange={(e) => setSearchQuery(e.target.value)}
+            style={{
+              padding: "10px",
+              fontSize: "16px",
+              borderRadius: "5px",
+              border: "1px solid #ccc",
+              width: "300px",
+            }}
           />
         </div>
 
-        {meals.length === 0 ? (
-          <p className="text-center text-gray-500 text-lg">No meals found.</p>
-        ) : (
-          <div className="grid grid-cols-3 gap-8">
-            {meals.map((meal) => {
-              const isFav = favorites.some((fav) => fav.idMeal === meal.idMeal);
+        {/* Recipe Grid */}
+        <div
+          className="recipe-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",  // 4 columns per row
+            gap: "20px",
+            justifyContent: "center",
+            width: "100%",
+            maxWidth: "1200px",
+          }}
+        >
+          {meals.slice(0, 16).map((meal) => {
+            const isFav = favorites.some((fav) => fav.idMeal === meal.idMeal);
+            return (
+              <div
+                key={meal.idMeal}
+                className="recipe-card"
+                style={{
+                  backgroundColor: "#fff",
+                  padding: "10px",
+                  borderRadius: "10px",
+                  textAlign: "center",
+                  boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+                }}
+              >
+                <img
+                  src={meal.strMealThumb}
+                  alt={meal.strMeal}
+                  style={{
+                    width: "100%",
+                    height: "100px",
+                    objectFit: "cover",
+                    borderRadius: "8px",
+                    marginBottom: "10px",
+                  }}
+                />
+                <h3 style={{ fontSize: "16px" }}>{meal.strMeal}</h3>
 
-              return (
-                <div
-                  key={meal.idMeal}
-                  className="relative bg-white rounded-2xl shadow-lg overflow-hidden transition transform hover:scale-105 hover:shadow-xl border border-amber-100"
+                <button
+                  onClick={() => handleFavoriteToggle(meal)}
+                  style={{
+                    backgroundColor: isFav ? "#ff0000" : "#70a288",
+                    color: "#fff",
+                    padding: "6px 12px",
+                    border: "none",
+                    borderRadius: "5px",
+                    cursor: "pointer",
+                    transition: "background-color 0.3s ease",
+                    fontSize: "14px",
+                  }}
                 >
-                  <img
-                    src={meal.strMealThumb}
-                    alt={meal.strMeal}
-                    className="w-full h-8 object-cover"
-                  />
-                  <div className="p-4">
-                    <h2 className="text-xl font-semibold font-serif text-amber-800 mb-2">
-                      {meal.strMeal}
-                    </h2>
-                    <a
-                      href={`https://www.themealdb.com/meal/${meal.idMeal}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-amber-600 hover:text-amber-800 font-medium underline"
-                    >
-                      View Full Recipe
-                    </a>
-                  </div>
-
-                  <button
-                    onClick={() =>
-                      isFav
-                        ? removeFromFavorites(meal.idMeal)
-                        : addToFavorites(meal)
-                    }
-                    className="absolute top-2 right-2 text-red-500 hover:scale-110 transition text-2xl"
-                  >
-                    {isFav ? "❤️" : "🤍"}
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </main>
+                  {isFav ? "❤️ Remove from Favorites" : "🤍 Add to Favorites"}
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      </div>
 
       <Footer />
     </>

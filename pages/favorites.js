@@ -1,68 +1,67 @@
+import { useFavorites } from "@/components/FavoritesContext";
 import Head from "next/head";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { useFavorites } from "@/components/FavoritesContext";
 
-export default function FavoritesPage() {
-  const { favorites, removeFromFavorites } = useFavorites();
+export default function Favorites() {
+  const { favorites } = useFavorites();
+
+  // Limit to 21 favorites
+  const limitedFavorites = favorites.slice(0, 21);
 
   return (
     <>
       <Head>
-        <title>GetCooked - Favourites</title>
-        <meta name="description" content="Your favourited meals" />
+        <title>GetCooked - Your Favorites</title>
+        <meta name="description" content="Your favorite recipes in one place" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Header />
 
-      <main className="max-w-7xl mx-auto px-6 py-10 bg-amber-50 min-h-screen">
-        <h1 className="text-4xl font-serif font-bold text-center text-amber-800 mb-10">
-          ❤️ Your Favourite Recipes
-        </h1>
+      <div className="main-container">
+        <h2 style={{ fontSize: "28px", marginBottom: "20px" }}>Your Favorite Recipes</h2>
 
-        {favorites.length === 0 ? (
-          <p className="text-center text-gray-500 text-lg">
-            You haven't added any meals to your favourites yet.
-          </p>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {favorites.map((meal) => (
-              <div
-                key={meal.idMeal}
-                className="relative bg-white rounded-2xl shadow-lg overflow-hidden transition transform hover:scale-105 hover:shadow-xl border border-amber-100"
-              >
-                <img
-                  src={meal.strMealThumb}
-                  alt={meal.strMeal}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-4">
-                  <h2 className="text-xl font-semibold font-serif text-amber-800 mb-2">
-                    {meal.strMeal}
-                  </h2>
-                  <a
-                    href={`https://www.themealdb.com/meal/${meal.idMeal}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-amber-600 hover:text-amber-800 font-medium underline"
-                  >
-                    View Full Recipe
-                  </a>
-                </div>
-
-                {/* Remove from Favorites Button */}
-                <button
-                  onClick={() => removeFromFavorites(meal.idMeal)}
-                  className="absolute top-2 right-2 text-red-500 hover:scale-110 transition text-2xl"
-                >
-                  ❌
-                </button>
-              </div>
-            ))}
-          </div>
-        )}
-      </main>
+        <div
+          className="recipe-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",  // 4 columns per row
+            gap: "20px",
+            justifyContent: "center",
+            width: "100%",
+            maxWidth: "1200px",
+          }}
+        >
+          {limitedFavorites.map((meal) => (
+            <div
+              key={meal.idMeal}
+              className="recipe-card"
+              style={{
+                backgroundColor: "#fff",
+                padding: "10px",
+                borderRadius: "10px",
+                textAlign: "center",
+                boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+              }}
+            >
+              <img
+                src={meal.strMealThumb}
+                alt={meal.strMeal}
+                style={{
+                  width: "100%",
+                  height: "100px",
+                  objectFit: "cover",
+                  borderRadius: "8px",
+                  marginBottom: "10px",
+                }}
+              />
+              <h3 style={{ fontSize: "16px" }}>{meal.strMeal}</h3>
+            </div>
+          ))}
+        </div>
+      </div>
 
       <Footer />
     </>
