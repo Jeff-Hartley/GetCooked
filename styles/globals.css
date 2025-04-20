@@ -183,6 +183,76 @@ footer {
   transform: scale(1.2);
 }
 
+.signup-container {
+  max-width: 400px;
+  margin: 40px auto;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.signup-title {
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #3c493f;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.signup-form input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  font-size: 16px;
+  background-color: #e7e6f7;
+}
+
+.signup-form input:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+.error-text {
+  color: red;
+  font-size: 15px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  background-color: #70a288;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #618c76;
+}
+
 @media (max-width: 1024px) {
   .recipe-grid {
     grid-template-columns: repeat(3, 1fr);
