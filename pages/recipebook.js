@@ -86,19 +86,10 @@ export default function RecipeBook() {
                   boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
                 }}
               >
-                <img
-                  src={meal.strMealThumb}
-                  alt={meal.strMeal}
-                  style={{
-                    width: "100%",
-                    height: "100px",
-                    objectFit: "cover",
-                    borderRadius: "8px",
-                    marginBottom: "10px",
-                  }}
-                />
-                <h3 style={{ fontSize: "16px" }}>{meal.strMeal}</h3>
-
+                <a href={`https://www.themealdb.com/meal.php?c=${meal.idMeal}`}>
+                  <img src={meal.strMealThumb} alt={meal.strMeal} />
+                  <h3>{meal.strMeal}</h3>
+                </a>
                 <button
                   onClick={() => handleFavoriteToggle(meal)}
                   style={{
