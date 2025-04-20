@@ -4,9 +4,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export default function Favorites() {
-  const { favorites } = useFavorites();
+  const { favorites, removeFromFavorites } = useFavorites();
 
-  // Limit to 21 favorites
   const limitedFavorites = favorites.slice(0, 21);
 
   return (
@@ -27,7 +26,7 @@ export default function Favorites() {
           className="recipe-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",  // 4 columns per row
+            gridTemplateColumns: "repeat(4, 1fr)",
             gap: "20px",
             justifyContent: "center",
             width: "100%",
@@ -57,7 +56,21 @@ export default function Favorites() {
                   marginBottom: "10px",
                 }}
               />
-              <h3 style={{ fontSize: "16px" }}>{meal.strMeal}</h3>
+              <h3 style={{ fontSize: "16px", marginBottom: "10px" }}>{meal.strMeal}</h3>
+              <button
+                onClick={() => removeFromFavorites(meal.idMeal)}
+                style={{
+                  backgroundColor: "#e57373",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "5px",
+                  padding: "6px 12px",
+                  cursor: "pointer",
+                  fontSize: "14px",
+                }}
+              >
+                Remove
+              </button>
             </div>
           ))}
         </div>
